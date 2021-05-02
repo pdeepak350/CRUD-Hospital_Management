@@ -5,12 +5,12 @@
 {% block content %}
 <div class="container">
     <h2>Hello, {{ user.username }}</h2>
+    {% if user.user_photo %}
+       <h4> <img src="{{ obj.user_photo.url }}" alt="Profile Pic" style="width:100px"> </h4>
+    {% endif %}
     <form method="POST">
         {% csrf_token %}
         {% bootstrap_form form %}
-         {% if user.user_photo %}
-        <img src="{{ user.user_photo.url }}" alt="Profile_Pic" style="width:40%">
-        {% endif %}
         <input type="submit" value="Update" class="btn btn-default">
     </form>
 </div>

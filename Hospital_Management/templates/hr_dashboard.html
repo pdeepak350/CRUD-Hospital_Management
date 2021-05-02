@@ -36,7 +36,7 @@
                 </thead>
                 {% for obj in doc_list %}
                 <tr>
-                    <td>{{ obj.photo }}</td>
+                    <td><img src="{{obj.user_photo.url}}" alt="Profile Pic" style="width:100px"></td>
                     <td>{{ obj.name }}</td>
                     <td>{{ obj.phone }}</td>
                     <td>{{ obj.email }}</td>

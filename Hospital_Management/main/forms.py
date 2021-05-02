@@ -35,6 +35,7 @@ class PrescriptionForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES, required=False, widget=forms.RadioSelect)
     datefield = forms.DateField(widget = forms.DateInput, required=False)
+    user_photo = models.ImageField(upload_to='profile/', default='admin.png')
     class Meta:
         model = UserProfile
         fields = ('name', 'user_photo','phone', 'email', 'gender', 'age', 'address', 'datefield', 'blood_group', 'med_reps', 'agree')
@@ -42,6 +43,8 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class DoctorProfileForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES, required=False, widget=forms.RadioSelect)
+    datefield = forms.DateField(widget = forms.DateInput, required=False)
+    user_photo = models.ImageField(upload_to='profile/', default='admin.png')
     class Meta:
         model = UserProfile
         fields = ('name', 'user_photo','phone', 'email', 'gender', 'age', 'address', 'datefield', 'blood_group', 'med_reps', 'agree')
