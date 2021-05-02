@@ -10,6 +10,37 @@ import string
 import random
 
 
+class AppointmentsForAPatientView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'login'
+ 
+    def get_queryset(self):
+        return Appointment.objects.filter(patient=self.request.user)
+ 
+ 
+class AppointmentsForADoctorView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'login'
+ 
+    def get_queryset(self):
+        return Appointment.objects.filter(doctor=self.request.user)
+ 
+ 
+class MedicalHistoryView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'login'
+ 
+    def get_queryset(self):
+        return Prescription.objects.filter(patient=self.request.user)
+ 
+ 
+class PrescriptionListView(LoginRequiredMixin, ListView):
+    login_url = '/login/'
+    redirect_field_name = 'login'
+ 
+    def get_queryset(self):
+        return Prescription.objects.filter(doctor=self.request.user)
+
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
 
@@ -117,37 +148,6 @@ def DeleteDocProfilePk(request, pk):
         return redirect('hr_dashboard')
     else:
         return render(request, 'profile_doc_delete.html', {'user':user})
-
-class AppointmentsForAPatientView(LoginRequiredMixin, ListView):
-    login_url = '/login/'
-    redirect_field_name = 'login'
- 
-    def get_queryset(self):
-        return Appointment.objects.filter(patient=self.request.user)
- 
- 
-class AppointmentsForADoctorView(LoginRequiredMixin, ListView):
-    login_url = '/login/'
-    redirect_field_name = 'login'
- 
-    def get_queryset(self):
-        return Appointment.objects.filter(doctor=self.request.user)
- 
- 
-class MedicalHistoryView(LoginRequiredMixin, ListView):
-    login_url = '/login/'
-    redirect_field_name = 'login'
- 
-    def get_queryset(self):
-        return Prescription.objects.filter(patient=self.request.user)
- 
- 
-class PrescriptionListView(LoginRequiredMixin, ListView):
-    login_url = '/login/'
-    redirect_field_name = 'login'
- 
-    def get_queryset(self):
-        return Prescription.objects.filter(doctor=self.request.user)
 
 
 @login_required(login_url='/login/')
