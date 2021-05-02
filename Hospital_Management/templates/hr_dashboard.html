@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="container">
+    <h1 align="center">Dashboard</h1>
+    <br>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <strong>Total Doctors</strong> - {{ totalDoc }}
+        </li>
+        <li class="list-group-item">
+            <strong>Total Patients</strong> - {{ totalPat }}
+        </li>
+        <li class="list-group-item">
+            <strong>On Duty Doctors</strong> - {{ ondutyDoc }}
+        </li>  
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>Doctors</h3>
+        <div class="card card-body">
+            <table class="table table-striped">
+                <thead> 
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </thead>
+                {% for obj in doc_list %}
+                <tr>
+                    <td>{{ obj.name }}</td>
+                    <td>{{ obj.phone }}</td>
+                    <td>{{ obj.email }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.age }}</td>
+                    <td>{{ obj.status }}</td>
+                    <td><a href="{% url 'user_profile:doc-profile-pk' pk=obj.user.id %}"><button class="btn btn-warning">Update</button></a></td>
+                    <td><a href="{% url 'user_profile:doc-profile-delete' pk=obj.user.id %}"><button class="btn btn-danger">Delete</button></a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
