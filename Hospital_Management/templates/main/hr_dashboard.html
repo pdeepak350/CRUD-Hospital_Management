@@ -24,7 +24,6 @@
         <div class="card card-body">
             <table class="table table-striped">
                 <thead> 
-                    <th>Profile Pic</th>
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
@@ -36,15 +35,14 @@
                 </thead>
                 {% for obj in doc_list %}
                 <tr>
-                    <td>{{ obj.photo }}</td>
                     <td>{{ obj.name }}</td>
                     <td>{{ obj.phone }}</td>
                     <td>{{ obj.email }}</td>
                     <td>{{ obj.gender }}</td>
                     <td>{{ obj.age }}</td>
                     <td>{{ obj.status }}</td>
-                    <td><a href="{% url 'doc-profile-pk' pk=obj.user.id %}"><button class="btn btn-warning">Update</button></a></td>
-                    <td><a href="{% url 'doc-profile-delete' pk=obj.user.id %}"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><a href="{% url 'user_profile:doc-profile-pk' pk=obj.user.id %}"><button class="btn btn-warning">Update</button></a></td>
+                    <td><a href="{% url 'user_profile:doc-profile-delete' pk=obj.user.id %}"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
                 {% endfor %}
             </table>

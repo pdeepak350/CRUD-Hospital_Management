@@ -5,7 +5,9 @@ from .models import *
 
 USER_CHOICES = [
     ('D', 'Doctor'),
-    ('P', 'Patient')
+    ('P', 'Patient'),
+    ('R', 'Receptionist'),
+    ('HR', 'HR')
 ]
 
 class UserCreateForm(UserCreationForm):
@@ -32,16 +34,17 @@ class PrescriptionForm(forms.ModelForm):
 
 class ProfileUpdateForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES, required=False, widget=forms.RadioSelect)
+    datefield = forms.DateField(widget = forms.DateInput, required=False)
     class Meta:
         model = UserProfile
-        fields = ('name', 'phone', 'email', 'gender', 'age', 'address', 'blood_group', 'med_reps')
+        fields = ('name', 'user_photo','phone', 'email', 'gender', 'age', 'address', 'datefield', 'blood_group', 'med_reps', 'agree')
 
 
 class DoctorProfileForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES, required=False, widget=forms.RadioSelect)
     class Meta:
         model = UserProfile
-        fields = ('name', 'phone', 'email', 'gender', 'age', 'address',  'status')
+        fields = ('name', 'user_photo','phone', 'email', 'gender', 'age', 'address', 'datefield', 'blood_group', 'med_reps', 'agree')
    
 
 class AppointmentForm(forms.ModelForm):

@@ -28,7 +28,7 @@ def SignUp(request):
             name = first_name + ' ' + last_name
             UserProfile.objects.create(name=name, user=user)
             login(request, user)
-            return redirect('index.html')
+            return redirect('home')
     else:
         form = UserCreateForm()
     return render(request, 'signup.html', {'form': form})
@@ -47,7 +47,7 @@ def CreateUserProfile(request):
             user.save_base(raw=True)
             profile.user = user
             profile.save()
-            return redirect('appointment:r_dashboard')
+            return redirect('r_dashboard')
             print("Hello")
             # except:
             #     print("Hey")
@@ -64,7 +64,7 @@ def UpdatedUserProfile(request):
         form = ProfileUpdateForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('user_profile:profile')
+            return redirect('profile')
     else:
         form = ProfileUpdateForm(instance=profile)
     return render(request, 'profile.html', {'form': form, 'user':user})
@@ -77,7 +77,7 @@ def UpdatedUserProfilePk(request, pk):
         form = ProfileUpdateForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('appointment:r_dashboard')
+            return redirect('r_dashboard')
     else:
         form = ProfileUpdateForm(instance=profile)
     return render(request, 'profile.html', {'form': form, 'user':user})
@@ -91,7 +91,7 @@ def UpdatedDocProfilePk(request, pk):
         form = DoctorProfileForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('appointment:hr_dashboard')
+            return redirect('hr_dashboard')
     else:
         form = DoctorProfileForm(instance=profile)
     return render(request, 'profile.html', {'form': form, 'user':user})
@@ -102,7 +102,7 @@ def DeleteUserProfilePk(request, pk):
     profile = UserProfile.objects.get(user=user)
     if request.method == 'POST':
         user.delete()
-        return redirect('appointment:r_dashboard')
+        return redirect('r_dashboard')
     else:
         return render(request, 'profile_delete.html', {'user':user})
 
@@ -114,7 +114,7 @@ def DeleteDocProfilePk(request, pk):
     profile = UserProfile.objects.get(user=user)
     if request.method == 'POST':
         user.delete()
-        return redirect('appointment:hr_dashboard')
+        return redirect('hr_dashboard')
     else:
         return render(request, 'profile_doc_delete.html', {'user':user})
 

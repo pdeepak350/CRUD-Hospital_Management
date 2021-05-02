@@ -27,7 +27,7 @@
                       {% if user.is_doctor %}
                       <!-- doctor's dashboard -->
                       <li><a href="{% url 'home' %}"class="btn btn-simple">Home</a></li>
-                      <li><a href="{% url 'user_profile:profile' %}" class="btn btn-simple">Profile</a></li>
+                      <li><a href="{% url 'profile' %}" class="btn btn-simple">Profile</a></li>
                       <li><a href="{% url 'doctor-appointments' %}"class="btn btn-simple">Appointments</a></li>
                       <li><a href="{% url 'doc-prescriptions' %}"class="btn btn-simple">Prescriptions</a></li>
     						      <li><a href="{% url 'logout' %}" class="btn btn-simple"><button class="btn btn-warning">Log Out</button></a></li>
@@ -36,8 +36,7 @@
                       <!-- patient's dashboard -->
                       <li><a href="{% url 'home' %}"class="btn btn-simple">Home</a></li>
                       <li><a href="{% url 'patient-appointments' %}"class="btn btn-simple">Your Appointment's</a></li>
-                      <li><a href="{% url 'pat_payments' %}"class="btn btn-simple">Invoices and Payments</a></li>
-                      <li><a href="{% url 'user_profile:profile' %}" class="btn btn-simple">Profile</a></li>
+                      <li><a href="{% url 'profile' %}" class="btn btn-simple">Profile</a></li>
                       <li><a href="{% url 'med-history' %}"class="btn btn-simple">Medical History</a></li>
     						      <li><a href="{% url 'logout' %}" class="btn btn-simple"><button class="btn btn-warning">Log Out</button></a></li> 
                       {% endif %}
@@ -51,7 +50,6 @@
                       <!-- HR's dashboard -->
                       <li><a href="{% url 'home' %}"class="btn btn-simple">Home</a></li>
                       <li><a href="{% url 'hr_dashboard' %}"class="btn btn-simple">Dashboard</a></li>
-                      <li><a href="{% url 'hr_accounting' %}"class="btn btn-simple">Accounting</a></li>
     						      <li><a href="{% url 'logout' %}" class="btn btn-simple"><button class="btn btn-warning">Log Out</button></a></li> 
                       {% endif %}
     						{% else %}
